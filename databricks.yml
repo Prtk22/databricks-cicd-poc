@@ -1,0 +1,10 @@
+bundle:
+  name: databricks-cicd-poc
+
+targets:
+  dev:
+    mode: development
+    default: true
+
+  prod:
+    mode: production

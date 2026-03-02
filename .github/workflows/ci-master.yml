@@ -1,0 +1,25 @@
+name: Master CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  validate-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - run: |
+          pip install -r requirements.txt
+          pip install databricks-cli
+
+      - run: pytest
+
+      - run: databricks bundle validate --target prod
